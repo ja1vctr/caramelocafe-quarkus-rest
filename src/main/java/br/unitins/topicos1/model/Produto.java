@@ -15,8 +15,6 @@ public class Produto {
     private String categoria;
     @Column(length = 60, nullable = false)
     private String descricao;
-    @Column(length = 60, nullable = false)
-    private String fornecedor;
     @Column(nullable = false)
     private Double valorDoProduto;
 
@@ -50,14 +48,6 @@ public class Produto {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    public String getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(String fornecedor) {
-        this.fornecedor = fornecedor;
     }
 
     public Double getValorDoProduto() {

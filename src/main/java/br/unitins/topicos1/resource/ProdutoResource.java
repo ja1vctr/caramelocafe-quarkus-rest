@@ -49,7 +49,6 @@ public class ProdutoResource {
         produtoSelecionado.setCategoria(produto.getDescricao());
         produtoSelecionado.setDescricao(produto.getDescricao());
         produtoSelecionado.setNome(produto.getNome());
-        produtoSelecionado.setFornecedor(produto.getFornecedor());
     }
 
     @DELETE
