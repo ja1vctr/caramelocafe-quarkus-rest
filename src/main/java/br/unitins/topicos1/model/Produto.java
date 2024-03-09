@@ -11,19 +11,20 @@ public class Produto {
     private String codigoProduto;
     @Column(length = 60, nullable = false)
     private String nome;
-    @Column(length = 60, nullable = false)
-    private String categoria;
+    @ManyToOne
+    @JoinColumn(name = "idCategoria")
+    private Categoria categoria;
     @Column(length = 60, nullable = false)
     private String descricao;
     @Column(nullable = false)
     private Double valorDoProduto;
 
-    public String getNome() {
-        return nome;
+    public Long getId() {
+        return id;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCodigoProduto() {
@@ -34,11 +35,19 @@ public class Produto {
         this.codigoProduto = codigoProduto;
     }
 
-    public String getCategoria() {
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 

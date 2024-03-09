@@ -1,6 +1,8 @@
 package br.unitins.topicos1.resource;
 
+import br.unitins.topicos1.dto.ProdutoDTO;
 import br.unitins.topicos1.model.Produto;
+import br.unitins.topicos1.repository.CategoriaRepository;
 import br.unitins.topicos1.repository.ProdutoRepository;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -14,6 +16,8 @@ import java.util.List;
 public class ProdutoResource {
     @Inject
     public ProdutoRepository produtoRepository;
+    @Inject
+    public CategoriaRepository categoriaRepository;
     @GET
     public List<Produto> findAll(){
         return produtoRepository.listAll();
@@ -42,13 +46,13 @@ public class ProdutoResource {
     @PUT
     @Transactional
     @Path("/{id}")
-    public void updateGeral(@PathParam("id") Long id, Produto produto){
-        Produto produtoSelecionado = produtoRepository.findById(id);
-        produtoSelecionado.setCodigoProduto(produto.getCodigoProduto());
-        produtoSelecionado.setValorDoProduto(produto.getValorDoProduto());
-        produtoSelecionado.setCategoria(produto.getDescricao());
-        produtoSelecionado.setDescricao(produto.getDescricao());
-        produtoSelecionado.setNome(produto.getNome());
+    public void updateGeral(@PathParam("id") Long id, ProdutoDTO dtoProduto){
+        Produto produto = produtoRepository.findById(id);
+        produto.setCodigoProduto(dtoProduto.codigoProduto());
+        produto.setNome(dtoProduto.nome());
+        produto.setCategoria(categoriaRepository.findById(dtoProduto.idCategoria()));
+        produto.setDescricao(dtoProduto.descricao());
+        produto.setValorDoProduto(dtoProduto.valorDoProduto());
     }
 
     @DELETE
